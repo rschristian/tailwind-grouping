@@ -17,4 +17,4 @@ export default defineConfig({
 
 ## License
 
-[MIT](https://github.com/rschristian/babel-plugin-tailwind-grouping/blob/master/LICENSE)
+[MIT](https://github.com/rschristian/tailwind-grouping/blob/master/LICENSE)

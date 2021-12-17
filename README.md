@@ -36,4 +36,4 @@ I plan on adding HTML and Vue support if possible to the Vite plugin, but no gua
 
 ## License
 
-[MIT](https://github.com/rschristian/freetunnel/blob/master/LICENSE)
+[MIT](https://github.com/rschristian/tailwind-grouping/blob/master/LICENSE)

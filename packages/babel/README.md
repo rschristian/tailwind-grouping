@@ -26,7 +26,7 @@ For more information on how to build grouped classes, see [Twind's docs on the s
 
 ## License
 
-[MIT](https://github.com/rschristian/babel-plugin-tailwind-grouping/blob/master/LICENSE)
+[MIT](https://github.com/rschristian/tailwind-grouping/blob/master/LICENSE)
 
 ## Acknowledgments
 
