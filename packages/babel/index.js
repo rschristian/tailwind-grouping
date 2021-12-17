@@ -1,11 +1,11 @@
 import { parse as twindParse, stringify as twindStringify } from './vendor/twind/parse.js';
 
-export default function tailwindGroupingPlugin({ types: _t }) {
-    const process = (classAttrVal) =>
-        twindParse(classAttrVal)
-            .map((rule) => twindStringify(rule))
-            .join(' ');
+export const process = (classAttrVal) =>
+    twindParse(classAttrVal)
+        .map((rule) => twindStringify(rule))
+        .join(' ');
 
+export default function tailwindGroupingPlugin({ types: _t }) {
     return {
         name: 'tailwind-grouping',
         visitor: {
