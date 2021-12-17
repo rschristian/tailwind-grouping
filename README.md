@@ -22,12 +22,11 @@ This syntax comes from [twind](https://twind.dev) and we use Twind to process yo
 
 ## Plugins
 
-
-| Package                                              | Description                           |
-| ---------------------------------------------------- | :-------------------------------------|
-| [babel-plugin-tailwind-grouping](packages/babel)     | Babel plugin and core expansion logic |
-| [vite-plugin-tailwind-grouping](packages/vite)       | Vite wrapper                          |
-| [wmr-plugin-tailwind-grouping](packages/wmr)         | WMR wraper                            |
+| Package                                          | Description                           |
+| ------------------------------------------------ | :------------------------------------ |
+| [babel-plugin-tailwind-grouping](packages/babel) | Babel plugin and core expansion logic |
+| [vite-plugin-tailwind-grouping](packages/vite)   | Vite wrapper                          |
+| [wmr-plugin-tailwind-grouping](packages/wmr)     | WMR wraper                            |
 
 ## Supported Syntax
 
