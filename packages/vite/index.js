@@ -7,12 +7,12 @@ export default function tailwindGroupingPlugin(options) {
         name: 'tailwind-grouping',
         enforce: 'pre',
         async transform(code, id) {
-            if (/\.html?$/.test(id)) {
+            if (/\.(?:html?|vue)$/.test(id)) {
                 const original = code;
                 const matches = code.matchAll(/class="([^"]*)/g);
                 for (const match of matches) {
                     if (!match[1].includes('(')) continue;
-                    code = code.replace(match[1], process(match[1]));
+                    code = code.replace(match[0], `class="${process(match[1])}`);
                 }
                 if (original === code) return;
                 return { code };
