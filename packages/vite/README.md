@@ -5,6 +5,7 @@ A Vite plugin that will convert grouped utility class names into their expanded 
 ## Usage
 
 vite.config.js
+
 ```
 import groupingPlugin from 'vite-plugin-tailwind-grouping';
 ...

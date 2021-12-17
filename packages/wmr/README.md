@@ -5,6 +5,7 @@ A WMR plugin that will convert grouped utility class names into their expanded f
 ## Usage
 
 wmr.config.mjs
+
 ```
 import groupingPlugin from 'wmr-plugin-tailwind-grouping';
 ...
