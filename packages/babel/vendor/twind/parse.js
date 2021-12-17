@@ -19,7 +19,7 @@ export const stringify = (rule, directive = rule.d) =>
 // Modified from: https://github.com/tw-in-js/twind/blob/94dd8e14546daf9f6e47ec3c7362bc51579f1853/src/internal/util.ts#L17-L19
 // ============================================================================================================================
 
-const fastIncludes = (value, search) => !!~value.indexOf(search);
+const includes = (value, search) => !!~value.indexOf(search);
 
 // ==========================================================================================================================
 // Modified from: https://github.com/tw-in-js/twind/blob/94dd8e14546daf9f6e47ec3c7362bc51579f1853/src/twind/parse.ts#L3-L301
@@ -76,7 +76,7 @@ const endGrouping = (isWhitespace) => {
     groupings.length = Math.max(groupings.lastIndexOf('') + ~~isWhitespace, 0);
 };
 
-const onlyPrefixes = (s) => s && !fastIncludes('!:', s[0]);
+const onlyPrefixes = (s) => s && !includes('!:', s[0]);
 const onlyVariants = (s) => s[0] == ':';
 
 const addRule = (directive, negate) => {
@@ -84,7 +84,7 @@ const addRule = (directive, negate) => {
         v: groupings.filter(onlyVariants),
         d: directive,
         n: negate,
-        i: fastIncludes(groupings, '!'),
+        i: includes(groupings, '!'),
         $: '',
     });
 };
@@ -186,7 +186,7 @@ const parseGroup = (key, token) => {
         // "symbol"
         // "function"
         // 2nd char is uniq
-        const isVariant = fastIncludes('tbu', (typeof token)[1]);
+        const isVariant = includes('tbu', (typeof token)[1]);
 
         parseString(key, isVariant);
 
@@ -242,7 +242,7 @@ const buildStatics = (strings) => {
         statics = strings.map((token, index) => {
             if (
                 slowModeIndex !== slowModeIndex &&
-                (token.slice(-1) == '[' || fastIncludes(':-(', (strings[index + 1] || '')[0]))
+                (token.slice(-1) == '[' || includes(':-(', (strings[index + 1] || '')[0]))
             ) {
                 // If the the string after the upcoming interpolation
                 // would start a grouping we switch to slow mode now
@@ -260,7 +260,7 @@ const buildStatics = (strings) => {
                     buffer += token;
 
                     // Join consecutive strings and numbers
-                    if (fastIncludes('rg', (typeof interpolation)[5])) {
+                    if (includes('rg', (typeof interpolation)[5])) {
                         buffer += interpolation;
                     } else if (interpolation) {
                         parseString(buffer);

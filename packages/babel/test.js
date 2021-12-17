@@ -72,4 +72,10 @@ test('Rewrites group w/ arbitrary properties', () => {
     );
 });
 
+test('Rewrites React classNames', () => {
+    const input = '<h1 className="text(blue-500 2xl)">Hello World</h1>';
+    const output = transformHelper(input);
+    assert.is(output.code, '<h1 className="text-blue-500 text-2xl">Hello World</h1>');
+});
+
 test.run();
