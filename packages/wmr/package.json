@@ -1,0 +1,34 @@
+{
+  "name": "wmr-plugin-tailwind-grouping",
+  "version": "0.1.0",
+  "type": "module",
+  "exports": "./dist/plugin.js",
+  "license": "MIT",
+  "description": "WMR plugin to expand grouped Tailwind utility classes",
+  "repository": "https://github.com/rschristian/tailwind-grouping",
+  "keywords": [
+    "tailwind",
+    "tailwindcss",
+    "twind",
+    "class",
+    "classes",
+    "groups",
+    "grouping",
+    "wmr",
+    "wmr-plugin",
+    "rollup-plugin"
+  ],
+  "files": [
+    "dist",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "microbundle -f modern -o dist/plugin.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "zecorn": "^0.10.1"
+  }
+}

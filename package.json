@@ -1,39 +1,15 @@
 {
-  "name": "babel-plugin-tailwind-grouping",
-  "version": "0.1.0",
-  "type": "module",
-  "exports": {
-    ".": {
-      "require": "./dist/plugin.cjs",
-      "default": "./dist/plugin.js"
-    }
-  },
-  "license": "MIT",
-  "description": "Babel plugin to expand grouped Tailwind utility classes",
-  "repository": "https://github.com/rschristian/babel-plugin-tailwind-grouping",
-  "keywords": [
-    "tailwind",
-    "tailwindcss",
-    "twind",
-    "class",
-    "classes",
-    "groups",
-    "grouping",
-    "babel",
-    "babel plugin",
-    "babel-plugin"
-  ],
-  "files": [
-    "dist",
-    "LICENSE",
-    "package.json",
-    "README.md"
-  ],
-  "sideEffects": false,
+  "name": "tailwind-grouping",
+  "private": true,
+  "description": "Plugins to expand grouped Tailwind utility classes",
   "scripts": {
-    "build": "microbundle -f modern,cjs -o dist/plugin.js",
-    "test": "node src/test.js",
-    "format": "prettier --write --ignore-path .gitignore ."
+    "babel": "yarn workspace babel-plugin-tailwind-grouping",
+    "vite": "yarn workspace vite-plugin-tailwind-grouping",
+    "wmr": "yarn workspace wmr-plugin-tailwind-grouping",
+    "build": "yarn babel build && yarn wmr build && yarn vite build",
+    "test": "yarn babel test && yarn wmr test && yarn vite test",
+    "format": "prettier --write --ignore-path .gitignore .",
+    "prepare": "tee packages/babel/LICENSE packages/vite/LICENSE packages/wmr/LICENSE < LICENSE >/dev/null"
   },
   "devDependencies": {
     "microbundle": "^0.14.2",
@@ -43,5 +19,8 @@
     "uvu": "^0.5.2",
     "zecorn": "^0.10.1"
   },
-  "prettier": "prettier-config-rschristian"
+  "prettier": "prettier-config-rschristian",
+  "workspaces": [
+    "packages/*"
+  ]
 }
