@@ -1,6 +1,6 @@
 {
   "name": "wmr-plugin-tailwind-grouping",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "exports": "./dist/plugin.js",
   "license": "MIT",
@@ -25,7 +25,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "microbundle -f modern -o dist/plugin.js",
+    "build": "microbundle -f modern -o dist/plugin.js --target node --sourcemap false",
     "test": "uvu tests -i fixtures"
   }
 }
