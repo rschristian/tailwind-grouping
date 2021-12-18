@@ -30,9 +30,19 @@ This syntax comes from [twind](https://twind.dev) and we use Twind to process yo
 
 ## Supported Syntax
 
-At the moment this only works with JSX or any HTML that is valid JSX. This means you cannot pass a full HTML doc as style and script tags are invalid, as is the doctype tag.
+The scope is quite limited at the moment, though I'm working on expanding.
 
-I plan on adding HTML and Vue support if possible to the Vite plugin, but no guarantees there.
+* `babel-plugin-tailwind-grouping`
+  - Only supports JSX/TSX inputs, or HTML that could be valid JSX.
+    * This excludes HTML documents, as `<!DOCTYPE>`, `<style>`, and `<script>` tags are invalid JSX
+
+* `vite-plugin-tailwind-grouping`
+  - Supports JSX/TSX, HTML, and Vue SFC inputs
+
+* `wmr-plugin-tailwind-grouping`
+  - Supports JSX/TSX. Input HTML is not provided to WMR plugins, so cannot transform it.
+
+Conditionals are not supported at all at the moment, and while this shouldn't break them, it won't ungroup them.
 
 ## License
 
