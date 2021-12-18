@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-tailwind-grouping",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "exports": {
     ".": {
@@ -30,7 +30,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "microbundle -f modern,cjs -o dist/plugin.js",
+    "build": "microbundle -f modern,cjs -o dist/plugin.js --target node --sourcemap false",
     "test": "node test.js"
   }
 }
