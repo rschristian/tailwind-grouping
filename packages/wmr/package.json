@@ -26,9 +26,6 @@
   ],
   "scripts": {
     "build": "microbundle -f modern -o dist/plugin.js",
-    "test": "node test.js"
-  },
-  "dependencies": {
-    "zecorn": "^0.10.1"
+    "test": "uvu tests -i fixtures"
   }
 }

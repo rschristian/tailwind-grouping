@@ -31,7 +31,6 @@
   ],
   "scripts": {
     "build": "microbundle -f modern,cjs -o dist/plugin.js",
-    "test": "node test.js",
-    "format": "prettier --write --ignore-path .gitignore ."
+    "test": "node test.js"
   }
 }
