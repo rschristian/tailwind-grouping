@@ -1,31 +1,37 @@
-import { parse, transform } from 'zecorn';
+import { process } from '../babel/index.js';
 
-import groupingPlugin, { process } from '../babel/index.js';
-
-export default function tailwindGroupingPlugin(options) {
+export default function tailwindGroupingPlugin() {
     return {
         name: 'tailwind-grouping',
         enforce: 'pre',
+        /**
+         * @param {string} code
+         * @param {string} id
+         */
         async transform(code, id) {
-            if (/\.(?:html?|vue)$/.test(id)) {
-                const original = code;
-                const matches = code.matchAll(/class="([^"]*)/g);
+            if (
+                id.endsWith('.html') ||
+                id.endsWith('.vue') ||
+                id.endsWith('.jsx') ||
+                id.endsWith('.tsx')
+            ) {
+                let mutated = false;
+
+                let matches = Array.from(code.matchAll(/class(?:Name)?="([^"]*)/g));
+                if (!matches.length) return;
+
                 for (const match of matches) {
                     if (!match[1].includes('(')) continue;
-                    code = code.replace(match[0], `class="${process(match[1])}`);
+                    if (!mutated) mutated = true;
+                    code = code.replace(
+                        match[0],
+                        `${match[0].includes('className') ? 'className' : 'class'}="${process(
+                            match[1],
+                        )}`,
+                    );
                 }
-                if (original === code) return;
-                return { code };
+                if (mutated) return { code };
             }
-
-            // Skip non-JSX/TSX files and files that don't contain JSX
-            if (!/\.[jt]sx$/.test(id) || !/<[a-zA-Z$_][\w.:-]*[^>]*>/.test(code)) return;
-
-            return transform(code, {
-                compress: options ? options.compress : false,
-                parse,
-                plugins: [groupingPlugin],
-            });
         },
     };
 }
