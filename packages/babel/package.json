@@ -31,7 +31,7 @@
   ],
   "scripts": {
     "build": "microbundle -f modern,cjs -o dist/plugin.js --target node --sourcemap false",
-    "test": "node test.js"
+    "test": "uvu tests"
   },
   "devDependencies": {
     "microbundle": "^0.14.2",

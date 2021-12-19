@@ -5,18 +5,27 @@ export const process = (classAttrVal) =>
         .map((rule) => twindStringify(rule))
         .join(' ');
 
+const updateTemplateLiteralGroupedClass = {
+    StringLiteral(path) {
+        if (!path.node.value || !path.node.value.includes('(')) return;
+        path.node.value = process(path.node.value);
+    }
+}
+
 export default function tailwindGroupingPlugin({ types: _t }) {
     return {
         name: 'tailwind-grouping',
         visitor: {
             JSXAttribute(path) {
-                if (
-                    (path.node.name.name !== 'class' && path.node.name.name !== 'className') ||
-                    !path.node.value.value ||
-                    !path.node.value.value.includes('(')
-                )
+                if (!/class(?:Name)?/.test(path.node.name.name) || !path.node.value) return;
+
+                if (path.node.value.type === 'StringLiteral') {
+                    if (!path.node.value.value || !path.node.value.value.includes('(')) return;
+                    path.node.value.value = process(path.node.value.value);
                     return;
-                path.node.value.value = process(path.node.value.value);
+                } else if (path.node.value.type === 'JSXExpressionContainer') {
+                    path.traverse(updateTemplateLiteralGroupedClass);
+                }
             },
         },
     };
