@@ -32,5 +32,10 @@
   "scripts": {
     "build": "microbundle -f modern,cjs -o dist/plugin.js --target node --sourcemap false",
     "test": "node test.js"
+  },
+  "devDependencies": {
+    "microbundle": "^0.14.2",
+    "uvu": "^0.5.2",
+    "zecorn": "^0.10.1"
   }
 }
