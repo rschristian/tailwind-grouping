@@ -2,18 +2,10 @@ import { test } from 'uvu';
 import * as assert from 'uvu/assert';
 import { transform, parse } from 'zecorn';
 
-import groupingPlugin from './index.js';
+import groupingPlugin from '../index.js';
 
 const transformHelper = (input) =>
     transform(input, { compress: true, parse: parse, plugins: [groupingPlugin] });
-
-test('Avoids rewriting unnecessarily', () => {
-    // If rewritten, the class will be missing the leading whitespace
-    // Kinda silly, but it works at detecting any transforms.
-    const input = '<h1 class=" !text-blue-500 md:text-2xl -rotate-45!">Hello World</h1>';
-    const output = transformHelper(input);
-    assert.is(output.code, input);
-});
 
 test('Rewrites simple group', () => {
     const input = '<h1 class="text(blue-500 2xl)">Hello World</h1>';
@@ -71,11 +63,3 @@ test('Rewrites group w/ arbitrary properties', () => {
         '<h1 class="md:[mask-type:luminance] md:hover:[mask-type:alpha]">Hello World</h1>',
     );
 });
-
-test('Rewrites React classNames', () => {
-    const input = '<h1 className="text(blue-500 2xl)">Hello World</h1>';
-    const output = transformHelper(input);
-    assert.is(output.code, '<h1 className="text-blue-500 text-2xl">Hello World</h1>');
-});
-
-test.run();
