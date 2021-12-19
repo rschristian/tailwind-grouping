@@ -32,5 +32,9 @@
   "scripts": {
     "build": "microbundle -f modern,cjs -o dist/plugin.js --target node --sourcemap false",
     "test": "uvu tests -i fixtures"
+  },
+  "devDependencies": {
+    "microbundle": "^0.14.2",
+    "uvu": "^0.5.2"
   }
 }
