@@ -1,11 +1,11 @@
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
-import { transform, parse } from 'zecorn';
+import { transform, parse } from '@rschristian/zecorn';
 
 import groupingPlugin from '../index.js';
 
 const transformHelper = (input) =>
-    transform(input, { compress: true, parse: parse, plugins: [groupingPlugin] });
+    transform(input, { __frozen: true, parse: parse, plugins: [groupingPlugin] });
 
 test('Rewrites simple group', () => {
     const input = '<h1 class="text(blue-500 2xl)">Hello World</h1>';

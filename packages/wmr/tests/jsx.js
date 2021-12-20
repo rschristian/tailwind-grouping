@@ -6,10 +6,10 @@ import groupingPlugin from '../index.js';
 
 const plugin = groupingPlugin();
 const grouped = await fs.readFile(new URL('./fixtures/grouped.jsx', import.meta.url), 'utf-8');
-const expanded = await fs.readFile(new URL('./fixtures/expanded.jsx', import.meta.url), 'utf-8');
 
 test('Avoid rewriting unnecessarily', async () => {
-    const result = await plugin.transform(expanded, 'index.jsx');
+    const input = '<h1 class="text-blue-500 text-2xl">Hello World</h1>';
+    const result = await plugin.transform(input, 'index.jsx');
     assert.type(result, 'undefined');
 });
 
@@ -27,7 +27,17 @@ test('Basic test of transform w/ className', async () => {
 
 test('Rewrites full JSX component', async () => {
     const result = await plugin.transform(grouped, 'index.jsx');
-    assert.fixture(result.code, expanded);
+    assert.match(result.code, /class="text-blue-500 text-xl"/);
+    assert.match(result.code, /className="flex flex-col"/);
+});
+
+test('Rewrites class w/ conditional', async () => {
+    const input = '<h1 class={`${active ? "text(blue-500 2xl)" : ""}`}>Hello World</h1>';
+    const result = await plugin.transform(input, 'index.jsx');
+    assert.equal(
+        result.code,
+        '<h1 class={`${active ? "text-blue-500 text-2xl" : ""}`}>Hello World</h1>',
+    );
 });
 
 test.run();

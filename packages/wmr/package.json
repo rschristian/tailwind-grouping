@@ -28,6 +28,9 @@
     "build": "microbundle -f modern -o dist/plugin.js --target node --sourcemap false",
     "test": "uvu tests -i fixtures"
   },
+  "dependencies": {
+    "@rschristian/zecorn": "^0.10.1"
+  },
   "devDependencies": {
     "microbundle": "^0.14.2",
     "uvu": "^0.5.2"

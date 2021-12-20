@@ -1034,6 +1034,20 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
+"@rschristian/zecorn@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@rschristian/zecorn/-/zecorn-0.10.1.tgz#0002962c1465f1d27add59320963d4d890355c1b"
+  integrity sha512-vGwj1EDVUHbr5Z5MR8xH5WCfTL1KUoJ87vxB0A+2ghC2uk99AFwWdXCBBKoQ2/IbZ/9R1VfEiX8AjvX3Ubd84Q==
+  dependencies:
+    acorn "^8.5.0"
+    acorn-class-fields "^1.0.0"
+    acorn-import-assertions "^1.7.5"
+    acorn-jsx "^5.3.2"
+    acorn-logical-assignment "^0.1.4"
+    acorn-private-methods "^1.0.0"
+    acorn-static-class-features "^1.0.0"
+    sourcemap-codec "^1.4.8"
+
 "@surma/rollup-plugin-off-main-thread@^2.2.2":
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/@surma/rollup-plugin-off-main-thread/-/rollup-plugin-off-main-thread-2.2.3.tgz#ee34985952ca21558ab0d952f00298ad2190c053"
@@ -3156,17 +3170,3 @@ yaml@^1.10.0, yaml@^1.10.2:
   version "1.10.2"
   resolved "https://registry.yarnpkg.com/yaml/-/yaml-1.10.2.tgz#2301c5ffbf12b467de8da2333a459e29e7920e4b"
   integrity sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==
-
-zecorn@^0.10.1:
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/zecorn/-/zecorn-0.10.1.tgz#eace3b594fb57ba55d2f6a74cd140adce9a1fbba"
-  integrity sha512-5+osKu0iWfJm0dmoB2eSBp8PAZ+pOCn74GRoCAkDwBk3ZBA9vMykw+rBuBq8R5FRU24qYn9lZRKeUz78IWIQOw==
-  dependencies:
-    acorn "^8.5.0"
-    acorn-class-fields "^1.0.0"
-    acorn-import-assertions "^1.7.5"
-    acorn-jsx "^5.3.2"
-    acorn-logical-assignment "^0.1.4"
-    acorn-private-methods "^1.0.0"
-    acorn-static-class-features "^1.0.0"
-    sourcemap-codec "^1.4.8"
