@@ -2,6 +2,23 @@ import { transform, parse } from '@rschristian/zecorn';
 
 import { default as groupingPlugin, process } from '../babel/index.js';
 
+function convertPlainClass(code) {
+    let mutated = false;
+
+    let matches = Array.from(code.matchAll(/class=(?<!:class=)"([^"]*)/g));
+    if (!matches.length) return;
+
+    for (const match of matches) {
+        if (!match[1].includes('(')) continue;
+        if (!mutated) mutated = true;
+        code = code.replace(
+            match[0],
+            `${match[0].includes('className') ? 'className' : 'class'}="${process(match[1])}`,
+        );
+    }
+    if (mutated) return { code };
+}
+
 /**
  * @returns {{ name: string, enforce: string, transform: (code: string, id: string) => Promise<{ code: string } | void> }}
  */
