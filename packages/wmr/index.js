@@ -1,5 +1,8 @@
 import { process } from '../babel/index.js';
 
+/**
+ * @returns {{ name: string, transform: (code: string, id: string) => Promise<{ code: string } | void> }}
+ */
 export default function tailwindGroupingPlugin() {
     return {
         name: 'tailwind-grouping',

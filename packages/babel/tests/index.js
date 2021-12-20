@@ -28,7 +28,7 @@ test('Handles null classes', () => {
 test('Handles conditional (ternary) classes', () => {
     const input = '<h1 class={`${x ? "text(blue-500 2xl)" : ""}`}>Hello World</h1>';
     const result = transformHelper(input);
-    assert.is(result.code, '<h1 class={`${x ? "text-blue-500 text-2xl" : ""}`}>Hello World</h1>')
+    assert.is(result.code, '<h1 class={`${x ? "text-blue-500 text-2xl" : ""}`}>Hello World</h1>');
 });
 
 test('Rewrites React classNames', () => {

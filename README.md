@@ -32,15 +32,17 @@ This syntax comes from [twind](https://twind.dev) and we use Twind to process yo
 
 The scope is quite limited at the moment, though I'm working on expanding.
 
-* `babel-plugin-tailwind-grouping`
-  - Only supports JSX/TSX inputs, or HTML that could be valid JSX.
-    * This excludes HTML documents, as `<!DOCTYPE>`, `<style>`, and `<script>` tags are invalid JSX
+-   `babel-plugin-tailwind-grouping`
 
-* `vite-plugin-tailwind-grouping`
-  - Supports JSX/TSX, HTML, and Vue SFC inputs
+    -   Only supports JSX/TSX inputs, or HTML that could be valid JSX.
+        -   This excludes HTML documents, as `<!DOCTYPE>`, `<style>`, and `<script>` tags are invalid JSX
 
-* `wmr-plugin-tailwind-grouping`
-  - Supports JSX/TSX. Input HTML is not provided to WMR plugins, so cannot transform it.
+-   `vite-plugin-tailwind-grouping`
+
+    -   Supports JSX/TSX, HTML, and Vue SFC inputs
+
+-   `wmr-plugin-tailwind-grouping`
+    -   Supports JSX/TSX. Input HTML is not provided to WMR plugins, so cannot transform it.
 
 Conditionals are not supported at all at the moment, and while this shouldn't break them, it won't ungroup them.
 
