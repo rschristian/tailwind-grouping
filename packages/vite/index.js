@@ -1,13 +1,12 @@
 import { process } from '../babel/index.js';
 
+/**
+ * @returns {{ name: string, enforce: string, transform: (code: string, id: string) => Promise<{ code: string } | void> }}
+ */
 export default function tailwindGroupingPlugin() {
     return {
         name: 'tailwind-grouping',
         enforce: 'pre',
-        /**
-         * @param {string} code
-         * @param {string} id
-         */
         async transform(code, id) {
             if (
                 id.endsWith('.html') ||

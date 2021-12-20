@@ -5,13 +5,6 @@ export const process = (classAttrVal) =>
         .map((rule) => twindStringify(rule))
         .join(' ');
 
-const updateTemplateLiteralGroupedClass = {
-    StringLiteral(path) {
-        if (!path.node.value || !path.node.value.includes('(')) return;
-        path.node.value = process(path.node.value);
-    }
-}
-
 export default function tailwindGroupingPlugin({ types: _t }) {
     return {
         name: 'tailwind-grouping',
@@ -22,9 +15,13 @@ export default function tailwindGroupingPlugin({ types: _t }) {
                 if (path.node.value.type === 'StringLiteral') {
                     if (!path.node.value.value || !path.node.value.value.includes('(')) return;
                     path.node.value.value = process(path.node.value.value);
-                    return;
                 } else if (path.node.value.type === 'JSXExpressionContainer') {
-                    path.traverse(updateTemplateLiteralGroupedClass);
+                    path.traverse({
+                        StringLiteral(path) {
+                            if (!path.node.value || !path.node.value.includes('(')) return;
+                            path.node.value = process(path.node.value);
+                        },
+                    });
                 }
             },
         },
