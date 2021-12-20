@@ -44,8 +44,6 @@ The scope is quite limited at the moment, though I'm working on expanding.
 -   `wmr-plugin-tailwind-grouping`
     -   Supports JSX/TSX. Input HTML is not provided to WMR plugins, so cannot transform it.
 
-Conditionals are not supported at all at the moment, and while this shouldn't break them, it won't ungroup them.
-
 ## License
 
 [MIT](https://github.com/rschristian/tailwind-grouping/blob/master/LICENSE)
