@@ -34,8 +34,8 @@
     "test": "uvu tests"
   },
   "devDependencies": {
+    "@rschristian/zecorn": "^0.10.1",
     "microbundle": "^0.14.2",
-    "uvu": "^0.5.2",
-    "zecorn": "^0.10.1"
+    "uvu": "^0.5.2"
   }
 }

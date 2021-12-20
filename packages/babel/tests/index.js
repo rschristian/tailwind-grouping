@@ -1,6 +1,6 @@
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
-import { transform, parse } from 'zecorn';
+import { transform, parse } from '@rschristian/zecorn';
 
 import groupingPlugin from '../index.js';
 
