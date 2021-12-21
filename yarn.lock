@@ -14,7 +14,7 @@
   resolved "https://registry.yarnpkg.com/@babel/compat-data/-/compat-data-7.16.4.tgz#081d6bbc336ec5c2435c6346b2ae1fb98b5ac68e"
   integrity sha512-1o/jo7D+kC9ZjHX5v+EHrdjl3PhxMrLSOTGsOdHJ+KL8HCaEK6ehrVL2RS6oHDZp+L7xLirLrPmQtEng769J/Q==
 
-"@babel/core@^7.12.10":
+"@babel/core@^7.12.10", "@babel/core@^7.16.5":
   version "7.16.5"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.16.5.tgz#924aa9e1ae56e1e55f7184c8bf073a50d8677f5c"
   integrity sha512-wUcenlLzuWMZ9Zt8S0KmFwGlH6QKRh3vsm/dhDA3CHkiTA45YuG1XkHRcNRl73EFPXDp/d5kVOU0/y7x2w6OaQ==
@@ -536,6 +536,13 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.14.5"
 
+"@babel/plugin-syntax-typescript@^7.16.5":
+  version "7.16.5"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-typescript/-/plugin-syntax-typescript-7.16.5.tgz#f47a33e4eee38554f00fb6b2f894fa1f5649b0b3"
+  integrity sha512-/d4//lZ1Vqb4mZ5xTep3dDK888j7BGM/iKqBmndBaoYAFPlPKrGU608VVBz5JeyAb6YQDjRu1UKqj86UhwWVgw==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.16.5"
+
 "@babel/plugin-transform-arrow-functions@^7.16.5":
   version "7.16.5"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-arrow-functions/-/plugin-transform-arrow-functions-7.16.5.tgz#04c18944dd55397b521d9d7511e791acea7acf2d"
@@ -1034,20 +1041,6 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@rschristian/zecorn@^0.10.1":
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/@rschristian/zecorn/-/zecorn-0.10.1.tgz#0002962c1465f1d27add59320963d4d890355c1b"
-  integrity sha512-vGwj1EDVUHbr5Z5MR8xH5WCfTL1KUoJ87vxB0A+2ghC2uk99AFwWdXCBBKoQ2/IbZ/9R1VfEiX8AjvX3Ubd84Q==
-  dependencies:
-    acorn "^8.5.0"
-    acorn-class-fields "^1.0.0"
-    acorn-import-assertions "^1.7.5"
-    acorn-jsx "^5.3.2"
-    acorn-logical-assignment "^0.1.4"
-    acorn-private-methods "^1.0.0"
-    acorn-static-class-features "^1.0.0"
-    sourcemap-codec "^1.4.8"
-
 "@surma/rollup-plugin-off-main-thread@^2.2.2":
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/@surma/rollup-plugin-off-main-thread/-/rollup-plugin-off-main-thread-2.2.3.tgz#ee34985952ca21558ab0d952f00298ad2190c053"
@@ -1089,52 +1082,6 @@
   integrity sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==
   dependencies:
     "@types/node" "*"
-
-acorn-class-fields@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/acorn-class-fields/-/acorn-class-fields-1.0.0.tgz#b413793e6b3ddfcd17a02f9c7a850f4bbfdc1c7a"
-  integrity sha512-l+1FokF34AeCXGBHkrXFmml9nOIRI+2yBnBpO5MaVAaTIJ96irWLtcCxX+7hAp6USHFCe+iyyBB4ZhxV807wmA==
-  dependencies:
-    acorn-private-class-elements "^1.0.0"
-
-acorn-import-assertions@^1.7.5:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/acorn-import-assertions/-/acorn-import-assertions-1.8.0.tgz#ba2b5939ce62c238db6d93d81c9b111b29b855e9"
-  integrity sha512-m7VZ3jwz4eK6A4Vtt8Ew1/mNbP24u0FhdyfA7fSvnJR6LMdfOYnmuIrrJAgrYfYJ10F/otaHTtrtrtmHdMNzEw==
-
-acorn-jsx@^5.3.2:
-  version "5.3.2"
-  resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-5.3.2.tgz#7ed5bb55908b3b2f1bc55c6af1653bada7f07937"
-  integrity sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==
-
-acorn-logical-assignment@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/acorn-logical-assignment/-/acorn-logical-assignment-0.1.4.tgz#1a143a21f022e1707b2bc82f587ae2943f0a570e"
-  integrity sha512-SeqO1iRtc/NeXo4bTkyK0hN0CIoKi/FQMN1NqhTr5UxqEn4p2wKNTZl+xzvU7i2u/k0f66YR7pNPi2ckPwYubg==
-
-acorn-private-class-elements@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/acorn-private-class-elements/-/acorn-private-class-elements-1.0.0.tgz#c5805bf8a46cd065dc9b3513bfebb504c88cd706"
-  integrity sha512-zYNcZtxKgVCg1brS39BEou86mIao1EV7eeREG+6WMwKbuYTeivRRs6S2XdWnboRde6G9wKh2w+WBydEyJsJ6mg==
-
-acorn-private-methods@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/acorn-private-methods/-/acorn-private-methods-1.0.0.tgz#b48f4c03a151cc8262f6f5ca8f57f7c5ac245184"
-  integrity sha512-Jou2L3nfwfPpFdmmHObI3yUpVPM1bPohTUAZCyVDw5Efyn9LSS6E36neRLCRfIr8QjskAfdxRdABOrvP4c/gwQ==
-  dependencies:
-    acorn-private-class-elements "^1.0.0"
-
-acorn-static-class-features@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/acorn-static-class-features/-/acorn-static-class-features-1.0.0.tgz#ab9d862d5b184007ed509f5a8d031b837694ace2"
-  integrity sha512-XZJECjbmMOKvMHiNzbiPXuXpLAJfN3dAKtfIYbk1eHiWdsutlek+gS7ND4B8yJ3oqvHo1NxfafnezVmq7NXK0A==
-  dependencies:
-    acorn-private-class-elements "^1.0.0"
-
-acorn@^8.5.0:
-  version "8.6.0"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.6.0.tgz#e3692ba0eb1a0c83eaa4f37f5fa7368dd7142895"
-  integrity sha512-U1riIR+lBSNi3IbxtaHOIKdH8sLFv3NYfNv8sg7ZsNhcfl4HF2++BfqqrNAxoCLQW1iiylOj76ecnaUxz+z9yw==
 
 alphanum-sort@^1.0.2:
   version "1.0.2"
@@ -2952,7 +2899,7 @@ source-map@~0.7.2:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.7.3.tgz#5302f8169031735226544092e64981f751750383"
   integrity sha512-CkCj6giN3S+n9qrYiBTX5gystlENnRW5jZeNLHpe6aue+SrHcG5VYwujhW9s4dY31mEGsxBDrHR6oI69fTXsaQ==
 
-sourcemap-codec@^1.4.4, sourcemap-codec@^1.4.8:
+sourcemap-codec@^1.4.4:
   version "1.4.8"
   resolved "https://registry.yarnpkg.com/sourcemap-codec/-/sourcemap-codec-1.4.8.tgz#ea804bd94857402e6992d05a38ef1ae35a9ab4c4"
   integrity sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==
