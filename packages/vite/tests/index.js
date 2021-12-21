@@ -35,9 +35,9 @@ each(
         { id: 'vite/modulepreaload-polyfill' },
     ],
     ({ id, allow }) => {
-        test(`Runs against ID: ${id}`, async () => {
+        test(`Runs against ID: ${id}`, () => {
             const input = '<h1 class="text(blue-500 2xl)">Hello World</h1>';
-            const result = await plugin.transform(input, id);
+            const result = plugin.transform(input, id);
             allow ? assert.not.type(result, 'undefined') : assert.type(result, 'undefined');
         });
     },

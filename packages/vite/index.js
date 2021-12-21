@@ -1,4 +1,4 @@
-import { transform, parse } from '@rschristian/zecorn';
+import { transformSync } from '@babel/core';
 
 import { default as groupingPlugin, process } from '../babel/index.js';
 
@@ -20,13 +20,13 @@ function convertPlainClass(code) {
 }
 
 /**
- * @returns {{ name: string, enforce: string, transform: (code: string, id: string) => Promise<{ code: string } | void> }}
+ * @returns {{ name: string, enforce: string, transform: (code: string, id: string) => { code: string } | void }}
  */
 export default function tailwindGroupingPlugin() {
     return {
         name: 'tailwind-grouping',
         enforce: 'pre',
-        async transform(code, id) {
+        transform(code, id) {
             if (/.html$/.test(id)) {
                 return convertPlainClass(code);
             }
@@ -58,14 +58,19 @@ export default function tailwindGroupingPlugin() {
                 if (mutated) return { code };
             }
 
-            // If J/TSX and contains JSX
-            if (/.[jt]sx$/.test(id) && /<[a-zA-Z$_][\w.:-]*[^>]*>/.test(code)) {
-                return transform(code, {
-                    __frozen: true,
-                    parse,
-                    plugins: [groupingPlugin],
-                });
-            }
+            // Skip if non-JS(X)/TSX files, and files that do not contain JSX
+            if (!/.[jt]sx$/.test(id) || !/<[a-zA-Z$_][\w.:-]*[^>]*>/.test(code)) return;
+            const isTSX = /.tsx$/.test(id);
+
+            const result = transformSync(code, {
+                plugins: [
+                    isTSX && ['@babel/plugin-syntax-typescript', { isTSX }],
+                    '@babel/plugin-syntax-jsx',
+                    groupingPlugin,
+                ].filter(Boolean),
+            });
+
+            return { code: result.code, map: result.map };
         },
     };
 }

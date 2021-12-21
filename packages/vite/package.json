@@ -34,7 +34,9 @@
     "test": "uvu tests -i fixtures"
   },
   "dependencies": {
-    "@rschristian/zecorn": "^0.10.1"
+    "@babel/core": "^7.16.5",
+    "@babel/plugin-syntax-jsx": "^7.16.5",
+    "@babel/plugin-syntax-typescript": "^7.16.5"
   },
   "devDependencies": {
     "microbundle": "^0.14.2",
