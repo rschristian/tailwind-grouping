@@ -14,7 +14,7 @@
 
 ## Overview
 
-The basis gist of these plugins is to conver syntax like `class="text(blue-500 2xl)"` into `class="text-blue-500 text-2xl"`. This alleviates a major pain point in the usage of Tailwind, as it can often become extremely repetative and verbose.
+The basis gist of these plugins is to convert syntax like `class="text(blue-500 2xl)"` into `class="text-blue-500 text-2xl"`. This alleviates a major pain point in the usage of Tailwind, as it can often become extremely repetative and verbose.
 
 This plugin facilitates directive (`text(blue-500 2xl)`), variant (`hover:(text-blue-500 text-2xl)`), and mixed (`hover:(text(blue-500 2xl))`) grouping.
 
