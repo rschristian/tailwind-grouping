@@ -25,10 +25,16 @@ test('Handles null classes', () => {
     assert.equal(result.map, null);
 });
 
-test('Handles conditional (ternary) classes', () => {
+test('Handles simple conditional (ternary) classes', () => {
     const input = '<h1 class={`${x ? "text(blue-500 2xl)" : ""}`}>Hello World</h1>';
     const result = transformHelper(input);
     assert.is(result.code, '<h1 class={`${x ? "text-blue-500 text-2xl" : ""}`}>Hello World</h1>;');
+});
+
+test('Handles complex conditional (ternary) classes', () => {
+    const input = '<h1 class={`text(red-500 xl) bg-${x ? "blue-500" : "green-500"} p-4`}>Hello World</h1>';
+    const result = transformHelper(input);
+    assert.is(result.code, '<h1 class={`text-red-500 text-xl bg-${x ? "blue-500" : "green-500"} p-4`}>Hello World</h1>;');
 });
 
 test('Rewrites React classNames', () => {
