@@ -63,3 +63,27 @@ test('Rewrites group w/ arbitrary properties', () => {
         '<h1 class="md:[mask-type:luminance] md:hover:[mask-type:alpha]">Hello World</h1>;',
     );
 });
+
+test('Rewrites group w/ simple conditional (ternary)', () => {
+    const input = '<h1 class={`${x ? "text(blue-500 2xl)" : ""}`}>Hello World</h1>';
+    const result = transformHelper(input);
+    assert.is(result.code, '<h1 class={`${x ? "text-blue-500 text-2xl" : ""}`}>Hello World</h1>;');
+});
+
+test('Rewrites group w/ complex conditional (ternary)', () => {
+    const input =
+        '<h1 class={`text(red-500 xl) bg-${x ? "blue-500" : "green-500"} p-4`}>Hello World</h1>';
+    const result = transformHelper(input);
+    assert.is(
+        result.code,
+        '<h1 class={`text-red-500 text-xl bg-${x ? "blue-500" : "green-500"} p-4`}>Hello World</h1>;',
+    );
+});
+
+test.only('Rewrites group w/ ternary inside of group', () => {
+    const input = '<h1 class={`mr(${props.isFeatured ? 5 : 3} last:0) p-4`}></h1>';
+    const result = transformHelper(input);
+    assert.equal(result.code, '<h1 class={`mr-${props.isFeatured ? 5 : 3} last:mr-0 p-4`}></h1>;');
+});
+
+test.run();
