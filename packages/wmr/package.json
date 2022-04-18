@@ -25,7 +25,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "microbundle -f modern -o dist/plugin.js --target node --sourcemap false",
+    "build": "microbundle -f modern -o dist/plugin.js --target node --no-sourcemap",
     "test": "uvu tests -i fixtures"
   },
   "dependencies": {

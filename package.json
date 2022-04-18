@@ -8,8 +8,7 @@
     "wmr": "yarn workspace wmr-plugin-tailwind-grouping",
     "build": "yarn babel build && yarn wmr build && yarn vite build",
     "test": "yarn babel test && yarn wmr test && yarn vite test",
-    "format": "prettier --write --ignore-path .gitignore .",
-    "prepare": "tee packages/babel/LICENSE packages/vite/LICENSE packages/wmr/LICENSE < LICENSE >/dev/null"
+    "format": "prettier --write --ignore-path .gitignore ."
   },
   "devDependencies": {
     "prettier": "^2.5.1",
