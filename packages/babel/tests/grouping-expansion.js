@@ -80,7 +80,7 @@ test('Rewrites group w/ complex conditional (ternary)', () => {
     );
 });
 
-test.only('Rewrites group w/ ternary inside of group', () => {
+test('Rewrites group w/ ternary inside of group', () => {
     const input = '<h1 class={`mr(${props.isFeatured ? 5 : 3} last:0) p-4`}></h1>';
     const result = transformHelper(input);
     assert.equal(result.code, '<h1 class={`mr-${props.isFeatured ? 5 : 3} last:mr-0 p-4`}></h1>;');
