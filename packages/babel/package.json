@@ -33,9 +33,11 @@
     "build": "microbundle -f modern,cjs -o dist/plugin.js --target node --no-sourcemap",
     "test": "uvu tests"
   },
+  "dependencies": {
+    "@babel/plugin-syntax-jsx": "^7.16.5"
+  },
   "devDependencies": {
     "@babel/core": "^7.16.5",
-    "@babel/plugin-syntax-jsx": "^7.16.5",
     "@babel/plugin-syntax-typescript": "^7.16.5",
     "@types/babel__core": "^7.1.19",
     "microbundle": "^0.14.2",

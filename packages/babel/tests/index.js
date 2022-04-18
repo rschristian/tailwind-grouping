@@ -5,7 +5,7 @@ import { transformSync } from '@babel/core';
 import groupingPlugin from '../index.js';
 
 const transformHelper = (input) =>
-    transformSync(input, { plugins: ['@babel/plugin-syntax-jsx', groupingPlugin] });
+    transformSync(input, { plugins: [groupingPlugin] });
 
 test('Avoids rewriting unnecessarily', () => {
     const input = '<h1 class="text-blue-500 text-2xl">Hello World</h1>';

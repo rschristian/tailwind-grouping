@@ -1,4 +1,7 @@
 import { parse as twindParse, stringify as twindStringify } from './vendor/twind/parse.js';
+import jsxSyntax from '@babel/plugin-syntax-jsx';
+// @ts-ignore
+const { default: jsx } = jsxSyntax;
 
 export const process = (classAttrVal) =>
     twindParse(classAttrVal)
@@ -64,6 +67,7 @@ export default function tailwindGroupingPlugin({ types: t }) {
 
     return {
         name: 'tailwind-grouping',
+        inherits: jsx,
         visitor: {
             JSXAttribute(path) {
                 // @ts-ignore

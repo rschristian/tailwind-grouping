@@ -24,7 +24,6 @@ export default function tailwindGroupingPlugin() {
             const result = transformSync(code, {
                 plugins: [
                     isTSX && ['@babel/plugin-syntax-typescript', { isTSX }],
-                    '@babel/plugin-syntax-jsx',
                     groupingPlugin,
                 ].filter(Boolean),
             });
