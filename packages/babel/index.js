@@ -66,6 +66,7 @@ export default function tailwindGroupingPlugin({ types: t }) {
         name: 'tailwind-grouping',
         visitor: {
             JSXAttribute(path) {
+                // @ts-ignore
                 if (!/class(?:Name)?/.test(path.node.name.name) || !path.node.value) return;
 
                 if (t.isStringLiteral(path.node.value)) {

@@ -2,8 +2,13 @@ import { transformSync } from '@babel/core';
 
 import { default as groupingPlugin } from '../babel/index.js';
 
+/** @typedef {import('@babel/core').BabelFileResult} BabelFileResult
+
 /**
- * @returns {{ name: string, transform: (code: string, id: string) => { code?: string, map: string } | void }}
+ * @returns {{
+ *   name: 'tailwind-grouping',
+ *   transform: (code: string, id: string) => { code?: BabelFileResult['code'], map: BabelFileResult['map'] } | void
+ * }}
  */
 export default function tailwindGroupingPlugin() {
     return {

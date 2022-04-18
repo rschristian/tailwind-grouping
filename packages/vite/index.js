@@ -19,8 +19,15 @@ function convertPlainClass(code) {
     if (mutated) return { code };
 }
 
+
+/** @typedef {import('@babel/core').BabelFileResult} BabelFileResult
+
 /**
- * @returns {{ name: string, enforce: string, transform: (code: string, id: string) => { code: string } | void }}
+ * @returns {{
+ *   name: 'tailwind-grouping',
+ *   enforce: 'pre',
+ *   transform: (code: string, id: string) => { code?: BabelFileResult['code'], map?: BabelFileResult['map'] } | void
+ * }}
  */
 export default function tailwindGroupingPlugin() {
     return {
