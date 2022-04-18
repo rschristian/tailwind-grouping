@@ -2,7 +2,10 @@
   "name": "wmr-plugin-tailwind-grouping",
   "version": "0.1.4",
   "type": "module",
-  "exports": "./dist/plugin.js",
+  "exports": {
+    ".": "./dist/plugin.js",
+    "./package.json": "./package.json"
+  },
   "license": "MIT",
   "description": "WMR plugin to expand grouped Tailwind utility classes",
   "repository": "https://github.com/rschristian/tailwind-grouping",

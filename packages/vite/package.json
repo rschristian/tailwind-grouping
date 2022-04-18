@@ -4,9 +4,10 @@
   "type": "module",
   "exports": {
     ".": {
-      "require": "./dist/plugin.cjs",
-      "default": "./dist/plugin.js"
-    }
+      "import": "./dist/plugin.js",
+      "require": "./dist/plugin.cjs"
+    },
+    "./package.json": "./package.json"
   },
   "license": "MIT",
   "description": "Vite plugin to expand grouped Tailwind utility classes",
