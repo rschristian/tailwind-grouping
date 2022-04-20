@@ -42,6 +42,7 @@
     "@babel/plugin-syntax-typescript": "^7.16.5",
     "@types/babel__core": "^7.1.19",
     "microbundle": "^0.14.2",
+    "twind": "^0.16.17",
     "uvu": "^0.5.2"
   }
 }

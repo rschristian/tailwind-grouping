@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "microbundle": "^0.14.2",
+    "twind": "^0.16.7",
     "uvu": "^0.5.2"
   }
 }

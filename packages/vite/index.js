@@ -1,6 +1,7 @@
+import { expandGroups } from 'twind';
 import { transformSync } from '@babel/core';
 
-import { default as groupingPlugin, process } from '../babel/index.js';
+import { default as groupingPlugin } from '../babel/index.js';
 
 function convertPlainClass(code) {
     let mutated = false;
@@ -13,7 +14,7 @@ function convertPlainClass(code) {
         if (!mutated) mutated = true;
         code = code.replace(
             match[0],
-            `${match[0].includes('className') ? 'className' : 'class'}="${process(match[1])}`,
+            `${match[0].includes('className') ? 'className' : 'class'}="${expandGroups(match[1])}`,
         );
     }
     if (mutated) return { code };
@@ -59,7 +60,7 @@ export default function tailwindGroupingPlugin() {
                         if (!groupedClasses[1].includes('(')) continue;
                         if (!mutated) mutated = true;
 
-                        code = code.replace(groupedClasses[0], `'${process(groupedClasses[1])}`);
+                        code = code.replace(groupedClasses[0], `'${expandGroups(groupedClasses[1])}`);
                     }
                 }
                 if (mutated) return { code };

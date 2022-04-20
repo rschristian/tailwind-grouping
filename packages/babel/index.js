@@ -1,12 +1,7 @@
-import { parse as twindParse, stringify as twindStringify } from './vendor/twind/parse.js';
+import { expandGroups } from 'twind';
 import jsxSyntax from '@babel/plugin-syntax-jsx';
 // @ts-ignore
 const { default: jsx } = jsxSyntax;
-
-export const process = (classAttrVal) =>
-    twindParse(classAttrVal)
-        .map((rule) => twindStringify(rule))
-        .join(' ');
 
 /**
  * @param {import('@babel/core')} babel
@@ -20,7 +15,7 @@ export default function tailwindGroupingPlugin({ types: t }) {
     const jsxExpressionContainerVisitor = {
         StringLiteral(path) {
             if (!hasParenthesis(path.node.value)) return;
-            path.node.value = process(path.node.value);
+            path.node.value = expandGroups(path.node.value);
         },
         TemplateElement(path) {
             if (!hasParenthesis(path.node.value.raw)) return;
@@ -46,7 +41,7 @@ export default function tailwindGroupingPlugin({ types: t }) {
                     start = path.node.value.raw.slice(0, firstVal);
                 }
 
-                path.node.value.raw = start + process(path.node.value.raw) + ending;
+                path.node.value.raw = start + expandGroups(path.node.value.raw) + ending;
             } else {
                 if (path.node.value.raw.endsWith('(')) {
                     const dirtyGroup = path.node.value.raw;
@@ -58,7 +53,7 @@ export default function tailwindGroupingPlugin({ types: t }) {
                         const insertIndex = splinteredGroup.search(/\S|$/);
                         path.getNextSibling().node.value.raw =
                             splinteredGroup.slice(0, insertIndex) +
-                            process(dirtyGroup + splinteredGroup.slice(insertIndex));
+                            expandGroups(dirtyGroup + splinteredGroup.slice(insertIndex));
                     }
                 }
             }
@@ -75,7 +70,7 @@ export default function tailwindGroupingPlugin({ types: t }) {
 
                 if (t.isStringLiteral(path.node.value)) {
                     if (!hasParenthesis(path.node.value.value)) return;
-                    path.node.value.value = process(path.node.value.value);
+                    path.node.value.value = expandGroups(path.node.value.value);
                 } else if (t.isJSXExpressionContainer(path.node.value)) {
                     path.traverse(jsxExpressionContainerVisitor);
                 }
