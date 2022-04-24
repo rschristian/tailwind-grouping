@@ -2,7 +2,7 @@ import { transformSync } from '@babel/core';
 
 import { default as groupingPlugin } from '../babel/index.js';
 
-/** @typedef {import('@babel/core').BabelFileResult} BabelFileResult
+/** @typedef {import('@babel/core').BabelFileResult} BabelFileResult */
 
 /**
  * @returns {{

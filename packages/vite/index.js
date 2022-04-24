@@ -21,7 +21,7 @@ function convertPlainClass(code) {
 }
 
 
-/** @typedef {import('@babel/core').BabelFileResult} BabelFileResult
+/** @typedef {import('@babel/core').BabelFileResult} BabelFileResult */
 
 /**
  * @returns {{
