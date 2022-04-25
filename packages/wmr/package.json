@@ -2,6 +2,7 @@
   "name": "wmr-plugin-tailwind-grouping",
   "version": "0.1.4",
   "type": "module",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": "./dist/plugin.js",
     "./package.json": "./package.json"
@@ -28,7 +29,8 @@
     "README.md"
   ],
   "scripts": {
-    "build": "microbundle -f modern -o dist/plugin.js --target node --no-sourcemap",
+    "build": "microbundle -f modern -o dist/plugin.js --target node --no-sourcemap --generateTypes",
+    "postbuild": "mv dist/wmr/index.d.ts dist/index.d.ts && rm -r dist/wmr",
     "test": "uvu tests -i fixtures"
   },
   "dependencies": {

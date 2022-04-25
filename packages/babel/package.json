@@ -2,6 +2,7 @@
   "name": "babel-plugin-tailwind-grouping",
   "version": "0.1.4",
   "type": "module",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/plugin.js",
@@ -31,7 +32,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "microbundle -f modern,cjs -o dist/plugin.js --target node --no-sourcemap",
+    "build": "microbundle -f modern,cjs -o dist/plugin.js --target node --no-sourcemap --generateTypes",
     "test": "uvu tests"
   },
   "dependencies": {
