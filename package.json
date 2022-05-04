@@ -8,14 +8,10 @@
     "wmr": "yarn workspace wmr-plugin-tailwind-grouping",
     "build": "yarn babel build && yarn wmr build && yarn vite build",
     "test": "yarn babel test && yarn wmr test && yarn vite test",
-    "format": "prettier --write --ignore-path .gitignore .",
-    ".": "Remove when microbundle#947 is released",
-    "postinstall": "patch-package"
+    "format": "prettier --write --ignore-path .gitignore ."
   },
   "devDependencies": {
-    "microbundle": "^0.14.2",
-    "patch-package": "^6.4.7",
-    "postinstall-postinstall": "^2.1.0",
+    "microbundle": "^0.15.0",
     "prettier": "^2.5.1",
     "prettier-config-rschristian": "^0.1.1",
     "typescript": "^4.5.3",
