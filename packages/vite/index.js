@@ -20,7 +20,6 @@ function convertPlainClass(code) {
     if (mutated) return { code };
 }
 
-
 /** @typedef {import('@babel/core').BabelFileResult} BabelFileResult */
 
 /**
@@ -60,7 +59,10 @@ export default function tailwindGroupingPlugin() {
                         if (!groupedClasses[1].includes('(')) continue;
                         if (!mutated) mutated = true;
 
-                        code = code.replace(groupedClasses[0], `'${expandGroups(groupedClasses[1])}`);
+                        code = code.replace(
+                            groupedClasses[0],
+                            `'${expandGroups(groupedClasses[1])}`,
+                        );
                     }
                 }
                 if (mutated) return { code };
