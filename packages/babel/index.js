@@ -26,23 +26,9 @@ export default function tailwindGroupingPlugin({ types: t }) {
             // class={`mr(${value ? 5 : 3} last:0) p-4`}
             //         ^^^                ^^^^^^^^^^^^
             if (
-                path.node.value.raw.match(/\(/g)?.length ===
+                path.node.value.raw.match(/\(/g)?.length !==
                 path.node.value.raw.match(/\)/g)?.length
             ) {
-                let ending = '';
-                if (/(-|\s)$/.test(path.node.value.raw)) {
-                    const lastVal = path.node.value.raw.lastIndexOf(' ');
-                    const length = path.node.value.raw.length;
-                    ending = path.node.value.raw.slice(lastVal - length);
-                }
-                let start = '';
-                if (/^\s/.test(path.node.value.raw)) {
-                    const firstVal = path.node.value.raw.indexOf(' ') + 1;
-                    start = path.node.value.raw.slice(0, firstVal);
-                }
-
-                path.node.value.raw = start + expandGroups(path.node.value.raw) + ending;
-            } else {
                 if (path.node.value.raw.endsWith('(')) {
                     const dirtyGroup = path.node.value.raw;
                     path.node.value.raw = path.node.value.raw.replace(/\(/, '-');
@@ -56,6 +42,20 @@ export default function tailwindGroupingPlugin({ types: t }) {
                             expandGroups(dirtyGroup + splinteredGroup.slice(insertIndex));
                     }
                 }
+            } else {
+                let ending = '';
+                if (/(-|\s)$/.test(path.node.value.raw)) {
+                    const lastVal = path.node.value.raw.lastIndexOf(' ');
+                    const length = path.node.value.raw.length;
+                    ending = path.node.value.raw.slice(lastVal - length);
+                }
+                let start = '';
+                if (/^\s/.test(path.node.value.raw)) {
+                    const firstVal = path.node.value.raw.indexOf(' ') + 1;
+                    start = path.node.value.raw.slice(0, firstVal);
+                }
+
+                path.node.value.raw = start + expandGroups(path.node.value.raw) + ending;
             }
         },
     };
