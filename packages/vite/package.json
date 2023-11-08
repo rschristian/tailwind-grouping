@@ -5,7 +5,8 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/plugin.js",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/plugin.modern.js",
       "require": "./dist/plugin.cjs"
     },
     "./package.json": "./package.json"

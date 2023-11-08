@@ -4,7 +4,10 @@
   "type": "module",
   "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./dist/plugin.js",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/plugin.modern.js"
+    },
     "./package.json": "./package.json"
   },
   "license": "MIT",
