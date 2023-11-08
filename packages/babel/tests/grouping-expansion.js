@@ -121,4 +121,38 @@ expressionContainer('Rewrites group w/ conditional at the end', () => {
     );
 });
 
+expressionContainer('Rewrites groups w/ conditional at the start', () => {
+    const input = '<h1 class={`text(blue-500 xl) flex(${x ? "row" : "col"} & 1)`}>Hello World</h1>';
+    const output = transformHelper(input);
+    assert.equal(
+        output.code,
+        '<h1 class={`text-blue-500 text-xl flex-${x ? "row" : "col"} flex flex-1`}>Hello World</h1>;',
+    );
+});
+
+expressionContainer('Rewrites groups w/ conditional in the middle', () => {
+    let input = '<h1 class={`text(blue-500 xl) flex(& ${x ? "row" : "col"} 1)`}>Hello World</h1>';
+    let output = transformHelper(input);
+    assert.equal(
+        output.code,
+        '<h1 class={`text-blue-500 text-xl flex flex-${x ? "row" : "col"} flex-1`}>Hello World</h1>;',
+    );
+
+    input = '<h1 class={`text(blue-500 xl) flex(& wrap ${x ? "row" : "col"} 1)`}>Hello World</h1>';
+    output = transformHelper(input);
+    assert.equal(
+        output.code,
+        '<h1 class={`text-blue-500 text-xl flex flex-wrap flex-${x ? "row" : "col"} flex-1`}>Hello World</h1>;',
+    );
+});
+
+expressionContainer('Rewrites groups w/ conditional at the end', () => {
+    const input = '<h1 class={`text(blue-500 xl) flex(& 1 ${x ? "row" : "col"})`}>Hello World</h1>';
+    const output = transformHelper(input);
+    assert.equal(
+        output.code,
+        '<h1 class={`text-blue-500 text-xl flex flex-1 flex-${x ? "row" : "col"}`}>Hello World</h1>;',
+    );
+});
+
 expressionContainer.run();
