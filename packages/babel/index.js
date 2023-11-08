@@ -23,24 +23,27 @@ export default function tailwindGroupingPlugin({ types: t }) {
             // If the numbers of left & right are not equal, the group
             // spans across a conditional and we need to bring in the variant or directive
             //
-            // class={`mr(${value ? 5 : 3} last:0) p-4`}
-            //         ^^^                ^^^^^^^^^^^^
+            // class={`text(black {value ? 'right' : 'left'} 3xl)`}
+            //         ^^^^^^^^^^                            ^^^^
             if (
                 path.node.value.raw.match(/\(/g)?.length !==
                 path.node.value.raw.match(/\)/g)?.length
             ) {
-                if (path.node.value.raw.endsWith('(')) {
-                    const dirtyGroup = path.node.value.raw;
-                    path.node.value.raw = path.node.value.raw.replace(/\(/, '-');
+                const lastGroup = path.node.value.raw.match(/([^\s]+)\((?:[^\(]+)?$/)[1];
 
-                    const nextSibling = path.getNextSibling().node;
-                    if (t.isTemplateElement(nextSibling)) {
-                        const splinteredGroup = nextSibling.value.raw;
-                        const insertIndex = splinteredGroup.search(/\S|$/);
-                        path.getNextSibling().node.value.raw =
-                            splinteredGroup.slice(0, insertIndex) +
-                            expandGroups(dirtyGroup + splinteredGroup.slice(insertIndex));
-                    }
+                // Add a `)` and expand (`flex(&`) or just convert `(` to a hyphen (`flex-`)
+                path.node.value.raw = (
+                    /\(\s?$/.test(path.node.value.raw)
+                        ? `${expandGroups(path.node.value.raw)} ${lastGroup}-`
+                        : `${expandGroups(path.node.value.raw + ')')} ${lastGroup}-`
+                ).trimStart();
+
+                const nextSibling = path.getNextSibling().node;
+                if (t.isTemplateElement(nextSibling)) {
+                    const splinteredGroup = nextSibling.value.raw;
+                    path.getNextSibling().node.value.raw = /\S\)/.test(splinteredGroup)
+                        ? ` ${expandGroups(`${lastGroup}(${splinteredGroup}`)}`
+                        : '';
                 }
             } else {
                 let ending = '';
