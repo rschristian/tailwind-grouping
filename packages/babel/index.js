@@ -24,7 +24,7 @@ export default function tailwindGroupingPlugin({ types: t }) {
             // spans across a conditional and we need to bring in the variant or directive
             //
             // class={`text(black {value ? 'right' : 'left'} 3xl)`}
-            //         ^^^^^^^^^^                            ^^^^
+            //         ^^^^^^^^^^^                          ^^^^^
             if (
                 path.node.value.raw.match(/\(/g)?.length !==
                 path.node.value.raw.match(/\)/g)?.length

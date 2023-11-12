@@ -33,7 +33,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "microbundle -f modern,cjs -o dist/plugin.js --target node --no-sourcemap --generateTypes",
+    "build": "microbundle -f modern,cjs -o dist/plugin.js --target node --no-sourcemap",
     "test": "uvu tests"
   },
   "dependencies": {

@@ -33,7 +33,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "microbundle -f modern,cjs -o dist/plugin.js --target node --no-sourcemap --generateTypes",
+    "build": "microbundle -f modern,cjs -o dist/plugin.js --target node --no-sourcemap",
     "postbuild": "mv dist/vite/index.d.ts dist/index.d.ts && rm -r dist/vite",
     "test": "uvu tests -i fixtures"
   },

@@ -32,7 +32,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "microbundle -f modern -o dist/plugin.js --target node --no-sourcemap --generateTypes",
+    "build": "microbundle -f modern -o dist/plugin.js --target node --no-sourcemap",
     "postbuild": "mv dist/wmr/index.d.ts dist/index.d.ts && rm -r dist/wmr",
     "test": "uvu tests -i fixtures"
   },
