@@ -155,4 +155,13 @@ expressionContainer('Rewrites groups w/ conditional at the end', () => {
     );
 });
 
+expressionContainer('Rewrites groups w/ multiple conditionals', () => {
+    const input = '<h1 class={`text-${x ? "blue-500" : "green-500"} flex(& ${x ? "row" : "col"} 1)`}>Hello World</h1>';
+    const output = transformHelper(input);
+    assert.equal(
+        output.code,
+        '<h1 class={`text-${x ? "blue-500" : "green-500"} flex flex-${x ? "row" : "col"} flex-1`}>Hello World</h1>;',
+    );
+});
+
 expressionContainer.run();

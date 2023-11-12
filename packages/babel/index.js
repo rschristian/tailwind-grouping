@@ -31,8 +31,14 @@ export default function tailwindGroupingPlugin({ types: t }) {
             ) {
                 const lastGroup = path.node.value.raw.match(/([^\s]+)\((?:[^\(]+)?$/)[1];
 
+                // Important when multiple conditionals are used
+                //
+                // class={`text-${x ? "blue" : "green"} flex-${x ? "row" : "col"}`}
+                //                                     ^^^^^^
+                const startsWith = /^\s/.test(path.node.value.raw) ? ' ' : '';
+
                 // Add a `)` and expand (`flex(&`) or just convert `(` to a hyphen (`flex-`)
-                path.node.value.raw = (
+                path.node.value.raw = startsWith + (
                     /\(\s?$/.test(path.node.value.raw)
                         ? `${expandGroups(path.node.value.raw)} ${lastGroup}-`
                         : `${expandGroups(path.node.value.raw + ')')} ${lastGroup}-`
