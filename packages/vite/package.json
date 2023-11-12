@@ -43,6 +43,7 @@
     "@babel/plugin-syntax-typescript": "^7.16.5"
   },
   "devDependencies": {
-    "twind": "^0.16.7"
+    "twind": "^0.16.7",
+    "vite": "^4.5.0"
   }
 }

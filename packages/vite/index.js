@@ -23,16 +23,13 @@ function convertPlainClass(code) {
 /** @typedef {import('@babel/core').BabelFileResult} BabelFileResult */
 
 /**
- * @returns {{
- *   name: 'tailwind-grouping',
- *   enforce: 'pre',
- *   transform: (code: string, id: string) => { code?: BabelFileResult['code'], map?: BabelFileResult['map'] } | void
- * }}
+ * @returns {import('vite').Plugin}
  */
 export default function tailwindGroupingPlugin() {
     return {
         name: 'tailwind-grouping',
         enforce: 'pre',
+        apply: 'build',
         transform(code, id) {
             if (/.html$/.test(id)) {
                 return convertPlainClass(code);
