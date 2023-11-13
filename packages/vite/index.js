@@ -29,7 +29,6 @@ export default function tailwindGroupingPlugin() {
     return {
         name: 'tailwind-grouping',
         enforce: 'pre',
-        apply: 'build',
         transform(code, id) {
             if (/.html$/.test(id)) {
                 return convertPlainClass(code);
