@@ -13,7 +13,10 @@
   },
   "license": "MIT",
   "description": "Babel plugin to expand grouped Tailwind utility classes",
-  "repository": "https://github.com/rschristian/babel-plugin-tailwind-grouping",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rschristian/babel-plugin-tailwind-grouping.git"
+  },
   "keywords": [
     "tailwind",
     "tailwindcss",

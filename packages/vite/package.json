@@ -13,7 +13,10 @@
   },
   "license": "MIT",
   "description": "Vite plugin to expand grouped Tailwind utility classes",
-  "repository": "https://github.com/rschristian/tailwind-grouping",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rschristian/tailwind-grouping.git"
+  },
   "keywords": [
     "tailwind",
     "tailwindcss",
