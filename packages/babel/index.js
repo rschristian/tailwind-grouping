@@ -31,13 +31,14 @@ export default function tailwindGroupingPlugin({ types: t }) {
             ) {
                 const lastGroup = path.node.value.raw.match(/([^\s]+)\((?:[^\(]+)?$/)[1];
 
-                // Important when multiple conditionals are used
+                // Preserve leading whitespace to avoid bunching up
                 //
                 // class={`text-${x ? "blue" : "green"} flex-${x ? "row" : "col"}`}
                 //                                     ^^^^^^
                 const startsWith = /^\s/.test(path.node.value.raw) ? ' ' : '';
 
-                // Add a `)` and expand (`flex(&`) or just convert `(` to a hyphen (`flex-`)
+                // Add a `)` and expand (`flex(&` -> `flex(&)`) or
+                // just convert `(` to a hyphen (`flex(` -> `flex-`)
                 path.node.value.raw = startsWith + (
                     /\(\s?$/.test(path.node.value.raw)
                         ? `${expandGroups(path.node.value.raw)} ${lastGroup}-`
@@ -46,9 +47,8 @@ export default function tailwindGroupingPlugin({ types: t }) {
 
                 const nextSibling = path.getNextSibling().node;
                 if (t.isTemplateElement(nextSibling)) {
-                    const splinteredGroup = nextSibling.value.raw;
-                    path.getNextSibling().node.value.raw = /\S\)/.test(splinteredGroup)
-                        ? ` ${expandGroups(`${lastGroup}(${splinteredGroup}`)}`
+                    nextSibling.value.raw = /\S\)/.test(nextSibling.value.raw)
+                        ? ` ${expandGroups(`${lastGroup}(${nextSibling.value.raw}`)}`
                         : '';
                 }
             } else {
