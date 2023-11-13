@@ -1,8 +1,8 @@
-import { test } from 'uvu';
+import { suite, test } from 'uvu';
 import * as assert from 'uvu/assert';
 import { transformSync } from '@babel/core';
 
-import groupingPlugin from '../index.js';
+import groupingPlugin from '../../index.js';
 
 const transformHelper = (input) => transformSync(input, { plugins: [groupingPlugin] });
 
@@ -22,41 +22,9 @@ test('Rewrites group in template element', () => {
     );
 });
 
-test('Rewrites group w/ conditional at the start', () => {
-    const input = '<h1 class={`flex(${x ? "row" : "col"} & 1)`}>Hello World</h1>';
-    const output = transformHelper(input);
-    assert.equal(
-        output.code,
-        '<h1 class={`flex-${x ? "row" : "col"} flex flex-1`}>Hello World</h1>;',
-    );
-});
+const positioning = suite('Positioning');
 
-test('Rewrites group w/ conditional in the middle', () => {
-    let input = '<h1 class={`flex(& ${x ? "row" : "col"} 1)`}>Hello World</h1>';
-    let output = transformHelper(input);
-    assert.equal(
-        output.code,
-        '<h1 class={`flex flex-${x ? "row" : "col"} flex-1`}>Hello World</h1>;',
-    );
-
-    input = '<h1 class={`flex(& wrap ${x ? "row" : "col"} 1)`}>Hello World</h1>';
-    output = transformHelper(input);
-    assert.equal(
-        output.code,
-        '<h1 class={`flex flex-wrap flex-${x ? "row" : "col"} flex-1`}>Hello World</h1>;',
-    );
-});
-
-test('Rewrites group w/ conditional at the end', () => {
-    const input = '<h1 class={`flex(& 1 ${x ? "row" : "col"})`}>Hello World</h1>';
-    const output = transformHelper(input);
-    assert.equal(
-        output.code,
-        '<h1 class={`flex flex-1 flex-${x ? "row" : "col"}`}>Hello World</h1>;',
-    );
-});
-
-test('Rewrites groups w/ conditional at the start', () => {
+positioning('Rewrites group w/ conditional at the start', () => {
     const input = '<h1 class={`text(blue-500 xl) flex(${x ? "row" : "col"} & 1)`}>Hello World</h1>';
     const output = transformHelper(input);
     assert.equal(
@@ -65,7 +33,7 @@ test('Rewrites groups w/ conditional at the start', () => {
     );
 });
 
-test('Rewrites groups w/ conditional in the middle', () => {
+positioning('Rewrites group w/ conditional in the middle', () => {
     let input = '<h1 class={`text(blue-500 xl) flex(& ${x ? "row" : "col"} 1)`}>Hello World</h1>';
     let output = transformHelper(input);
     assert.equal(
@@ -81,7 +49,7 @@ test('Rewrites groups w/ conditional in the middle', () => {
     );
 });
 
-test('Rewrites groups w/ conditional at the end', () => {
+positioning('Rewrites group w/ conditional at the end', () => {
     const input = '<h1 class={`text(blue-500 xl) flex(& 1 ${x ? "row" : "col"})`}>Hello World</h1>';
     const output = transformHelper(input);
     assert.equal(
@@ -90,8 +58,11 @@ test('Rewrites groups w/ conditional at the end', () => {
     );
 });
 
-test('Rewrites groups w/ multiple conditionals', () => {
-    const input = '<h1 class={`text-${x ? "blue-500" : "green-500"} flex(& ${x ? "row" : "col"} 1)`}>Hello World</h1>';
+positioning.run();
+
+test('Rewrites group after previous conditional', () => {
+    const input =
+        '<h1 class={`text-${x ? "blue-500" : "green-500"} flex(& ${x ? "row" : "col"} 1)`}>Hello World</h1>';
     const output = transformHelper(input);
     assert.equal(
         output.code,

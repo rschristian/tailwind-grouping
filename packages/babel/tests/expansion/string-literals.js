@@ -2,7 +2,7 @@ import { test } from 'uvu';
 import * as assert from 'uvu/assert';
 import { transformSync } from '@babel/core';
 
-import groupingPlugin from '../index.js';
+import groupingPlugin from '../../index.js';
 
 const transformHelper = (input) => transformSync(input, { plugins: [groupingPlugin] });
 
@@ -10,6 +10,12 @@ test('Rewrites simple group', () => {
     const input = '<h1 class="text(blue-500 2xl)">Hello World</h1>';
     const output = transformHelper(input);
     assert.is(output.code, '<h1 class="text-blue-500 text-2xl">Hello World</h1>;');
+});
+
+test('Rewrites multiple groups', () => {
+    const input = '<h1 class="text(blue-500 2xl) flex(& row)">Hello World</h1>';
+    const output = transformHelper(input);
+    assert.is(output.code, '<h1 class="text-blue-500 text-2xl flex flex-row">Hello World</h1>;');
 });
 
 test('Rewrites nested group', () => {
